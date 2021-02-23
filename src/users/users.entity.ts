@@ -6,15 +6,21 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class Tweet {
+export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ length: 280 })
-  content: string;
+  @Column({ unique: true })
+  email: string;
 
-  @Column({ default: 'ae6aa0ab-2a6c-47e5-bc4f-9cf922f00865' })
-  userId: string;
+  @Column()
+  password: string;
+
+  @Column({ unique: true })
+  username: string;
+
+  @Column()
+  name: string;
 
   @CreateDateColumn()
   createdAt: Date;

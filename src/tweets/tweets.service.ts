@@ -7,18 +7,18 @@ import { Tweet } from './tweets.entity';
 @Injectable()
 export class TweetsService {
   constructor(
-    @InjectRepository(Tweet) private userRepository: Repository<Tweet>,
+    @InjectRepository(Tweet) private tweetsRepository: Repository<Tweet>,
   ) {}
 
-  create(createTweetDto: CreateTweetDto) {
-    return this.userRepository.save(createTweetDto);
+  create(createTweetDto: CreateTweetDto): Promise<Tweet> {
+    return this.tweetsRepository.save(createTweetDto);
   }
 
   findAll(): Promise<Tweet[]> {
-    return this.userRepository.find();
+    return this.tweetsRepository.find();
   }
 
   findOne(id: string): Promise<Tweet> {
-    return this.userRepository.findOne(id);
+    return this.tweetsRepository.findOne(id);
   }
 }
