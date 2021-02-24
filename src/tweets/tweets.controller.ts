@@ -1,5 +1,16 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { ResponseOrNotFound } from 'src/response-or-not-found.interceptor';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Req,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
+import { Request } from 'express';
+import { JwtAuthGuard } from 'src/auth/jwt.guard';
+import { ResponseOrNotFoundInterceptor } from 'src/response-or-not-found.interceptor';
 import { CreateTweetDto } from './dto/create-tweet.dto';
 import { TweetsService } from './tweets.service';
 
@@ -7,9 +18,13 @@ import { TweetsService } from './tweets.service';
 export class TweetsController {
   constructor(private readonly tweetsService: TweetsService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post()
-  create(@Body() createTweetDto: CreateTweetDto) {
-    return this.tweetsService.create(createTweetDto);
+  create(@Body() createTweetDto: CreateTweetDto, @Req() req: Request) {
+    return this.tweetsService.create({
+      ...createTweetDto,
+      user: req.user,
+    });
   }
 
   @Get()
@@ -18,7 +33,7 @@ export class TweetsController {
   }
 
   @Get(':id')
-  @ResponseOrNotFound()
+  @UseInterceptors(ResponseOrNotFoundInterceptor)
   findOne(@Param('id') id: string) {
     return this.tweetsService.findOne(id);
   }

@@ -1,8 +1,10 @@
+import { User } from 'src/users/users.entity';
 import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
+  ManyToOne,
 } from 'typeorm';
 
 @Entity()
@@ -10,12 +12,12 @@ export class Tweet {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @CreateDateColumn()
+  createdAt: Date;
+
   @Column({ length: 280 })
   content: string;
 
-  @Column({ default: 'ae6aa0ab-2a6c-47e5-bc4f-9cf922f00865' })
-  userId: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
+  @ManyToOne(() => User)
+  user: User;
 }

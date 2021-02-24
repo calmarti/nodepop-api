@@ -4,7 +4,6 @@ import {
   Injectable,
   NestInterceptor,
   NotFoundException,
-  UseInterceptors,
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -15,14 +14,14 @@ export class ResponseOrNotFoundInterceptor implements NestInterceptor {
     return next.handle().pipe(
       map((response) => {
         if (!response) {
-          throw new NotFoundException();
+          const [req] = context.getArgs();
+          throw new NotFoundException(
+            `Cannot ${req.method} ${req.url}`,
+            'Not found',
+          );
         }
         return response;
       }),
     );
   }
-}
-
-export function ResponseOrNotFound() {
-  return UseInterceptors(ResponseOrNotFoundInterceptor);
 }

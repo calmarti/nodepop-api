@@ -10,10 +10,13 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @CreateDateColumn()
+  createdAt: Date;
+
   @Column({ unique: true })
   email: string;
 
-  @Column()
+  @Column({ select: false })
   password: string;
 
   @Column({ unique: true })
@@ -21,7 +24,4 @@ export class User {
 
   @Column()
   name: string;
-
-  @CreateDateColumn()
-  createdAt: Date;
 }
