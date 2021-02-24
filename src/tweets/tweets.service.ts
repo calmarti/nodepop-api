@@ -15,10 +15,10 @@ export class TweetsService {
   }
 
   findAll() {
-    return this.tweetsRepository.find({ relations: ['user'] });
+    return this.tweetsRepository.find();
   }
 
   findOne(id: string) {
-    return this.tweetsRepository.findOne(id, { relations: ['user'] });
+    return this.tweetsRepository.findOne(id);
   }
 }

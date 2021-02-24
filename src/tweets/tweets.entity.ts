@@ -18,6 +18,6 @@ export class Tweet {
   @Column({ length: 280 })
   content: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, { eager: true })
   user: User;
 }
