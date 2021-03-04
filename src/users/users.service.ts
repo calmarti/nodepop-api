@@ -14,7 +14,7 @@ export class UsersService {
     return this.usersRepository.save(createUserDto);
   }
 
-  findOne(id: string) {
+  findById(id: string) {
     return this.usersRepository.findOne(id);
   }
 

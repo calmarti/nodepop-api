@@ -28,13 +28,13 @@ export class TweetsController {
   }
 
   @Get()
-  findAll() {
+  getAll() {
     return this.tweetsService.findAll();
   }
 
   @Get(':id')
   @UseInterceptors(ResponseOrNotFoundInterceptor)
-  findOne(@Param('id') id: string) {
-    return this.tweetsService.findOne(id);
+  getOne(@Param('id') id: string) {
+    return this.tweetsService.findById(id);
   }
 }

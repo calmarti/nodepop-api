@@ -18,7 +18,7 @@ export class TweetsService {
     return this.tweetsRepository.find();
   }
 
-  findOne(id: string) {
+  findById(id: string) {
     return this.tweetsRepository.findOne(id);
   }
 }
