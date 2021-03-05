@@ -11,10 +11,10 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async signup(signupDto: SignupDto) {
-    const hashedPassword = await bcrypt.hash(signupDto.password, 10);
+  async signup(data: any) {
+    const hashedPassword = await bcrypt.hash(data.password, 10);
     const { password, ...user } = await this.usersService.create({
-      ...signupDto,
+      ...data,
       password: hashedPassword,
     });
     return user;

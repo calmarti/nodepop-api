@@ -8,21 +8,25 @@ import {
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
+import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
 import { Request } from 'express';
 import { JwtAuthGuard } from 'src/auth/jwt.guard';
 import { ResponseOrNotFoundInterceptor } from 'src/response-or-not-found.interceptor';
-import { CreateTweetDto } from './dto/create-tweet.dto';
+import { TweetDto } from './dto/tweet.dto';
 import { TweetsService } from './tweets.service';
 
+@ApiTags('tweets')
 @Controller('tweets')
 export class TweetsController {
   constructor(private readonly tweetsService: TweetsService) {}
 
+  @ApiBearerAuth()
+  @ApiBody({ type: TweetDto })
   @UseGuards(JwtAuthGuard)
   @Post()
-  create(@Body() createTweetDto: CreateTweetDto, @Req() req: Request) {
+  create(@Body() tweetDto: TweetDto, @Req() req: Request) {
     return this.tweetsService.create({
-      ...createTweetDto,
+      ...tweetDto,
       user: req.user,
     });
   }
