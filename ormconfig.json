@@ -1,9 +1,6 @@
 {
-  "type": "mysql",
-  "host": "localhost",
-  "port": 3306,
-  "username": "root",
-  "database": "tweets",
+  "type": "sqlite",
+  "database": "data/tweeter.sqlite",
   "entities": ["dist/**/*.entity{.ts,.js}"],
   "synchronize": true
 }
