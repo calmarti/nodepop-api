@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  server:
+    image: nodepop-api
+    build: .
+    container_name: server
+    ports:
+      - 5000:5000
+    restart: unless-stopped
+    volumes:
+      - ./data:/home/node/app/data

@@ -1,6 +1,6 @@
 {
   "type": "sqlite",
-  "database": "data/tweeter.sqlite",
+  "database": "data/nodepop.sqlite",
   "entities": ["dist/**/*.entity{.ts,.js}"],
   "synchronize": true
 }
