@@ -19,15 +19,15 @@ export class AuthController {
     return this.authService.signup(signupDto);
   }
 
-  @ApiBody({ type: LoginDto })
   @UseGuards(LocalAuthGuard)
+  @ApiBody({ type: LoginDto })
   @Post('login')
   login(@Req() req: Request) {
     return this.authService.login(req.user);
   }
 
-  @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @Get('me')
   me(@Req() req: Request) {
     return req.user;

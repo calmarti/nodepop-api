@@ -7,16 +7,20 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
   app.useGlobalPipes(
-    new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
   );
   app.setGlobalPrefix('api');
 
   const options = new DocumentBuilder()
-    .setTitle('Tweeter API')
-    .setDescription('The Tweeter APi description')
+    .setTitle('Nodepop API')
+    .setDescription('The Nodepop API description')
     .setVersion('1.0')
     .addTag('auth')
-    .addTag('tweets')
+    .addTag('adverts')
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, options);
