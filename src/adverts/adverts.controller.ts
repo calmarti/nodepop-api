@@ -39,7 +39,6 @@ export class AdvertsController {
     @UploadedFile() photo: Express.Multer.File,
     @Req() req: Express.Request,
   ) {
-    console.log('controller', createAdvertDto);
     return this.advertsService.create({
       ...createAdvertDto,
       photo: photo ? `/public/${photo.filename}` : null,

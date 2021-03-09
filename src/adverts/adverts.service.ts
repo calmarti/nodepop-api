@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Between, Equal, Like, MoreThanOrEqual, Repository } from 'typeorm';
 import { Advert } from './entities/advert.entity';
 import { Tags } from './enums/tags.enum';
 
@@ -21,8 +21,26 @@ export class AdvertsService {
   }
 
   findAll(query: any) {
-    console.log(query);
-    return this.advertsRepository.find();
+    const where: any = {};
+    if (query.name) {
+      where.name = Like(query.name);
+    }
+    if ([true, false].includes(query.sale)) {
+      where.sale = Equal(query.sale);
+    }
+    if (query.price) {
+      if (query.price.length === 1) {
+        const [min] = query.price;
+        where.price = MoreThanOrEqual(min);
+      } else {
+        const [min, max] = query.price;
+        where.price = Between(min, max);
+      }
+    }
+    if (query.tags) {
+      where.tags = Like(`%${query.tags.join('%')}%`);
+    }
+    return this.advertsRepository.find(where);
   }
 
   findById(id: string) {

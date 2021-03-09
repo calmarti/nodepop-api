@@ -28,7 +28,7 @@ export class CreateAdvertDto {
 
   @ApiProperty({ type: String, enum: Tags, isArray: true })
   @Transform(({ value }) =>
-    typeof value === 'string' ? value.split(',') : value,
+    [...new Set(typeof value === 'string' ? value.split(',') : value)].sort(),
   )
   @ArrayNotEmpty()
   tags: string[];

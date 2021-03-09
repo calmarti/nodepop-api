@@ -35,7 +35,9 @@ export class FilterAdvertDto {
 
   @ApiPropertyOptional({ type: String, enum: Tags, isArray: true })
   @Transform(({ value }) =>
-    (typeof value === 'string' ? [value] : value).filter((v: any) => v),
+    [...new Set(typeof value === 'string' ? [value] : value)]
+      .filter((v: any) => v)
+      .sort(),
   )
   @ArrayNotEmpty()
   @IsOptional()
