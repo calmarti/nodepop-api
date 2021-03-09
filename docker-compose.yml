@@ -5,7 +5,8 @@ services:
     build: .
     container_name: server
     ports:
-      - 5000:5000
+      - ${PORT}:${PORT}
     restart: unless-stopped
     volumes:
       - ./data:/home/node/app/data
+      - ./${UPLOADS_FOLDER}:/home/node/app/${UPLOADS_FOLDER}
