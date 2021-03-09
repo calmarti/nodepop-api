@@ -45,9 +45,9 @@ $ npm run start:dev
 $ npm run start:prod
 
 # docker compose
-$ docker-compose up -d  # (create/start container)
-$ docker-compose start  # (start container)
+$ docker-compose up -d  # (create and start container --build for rebuild image)
 $ docker-compose stop   # (stop container)
+$ docker-compose start  # (start container)
 $ docker-compose down   # (delete container)
 ```
 
