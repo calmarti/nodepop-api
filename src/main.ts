@@ -2,6 +2,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,7 +15,6 @@ async function bootstrap() {
     }),
   );
   app.setGlobalPrefix('api');
-
   const options = new DocumentBuilder()
     .setTitle('Nodepop API')
     .setDescription('The Nodepop API Swagger Page')
@@ -26,6 +26,12 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('swagger', app, document);
 
-  await app.listen(process.env.PORT || 3000);
+  const configService = app.get(ConfigService);
+  const port = configService.get<number>('PORT') || 3000;
+
+  await app.listen(port, () => {
+    console.log(`Nodepop API running in port ${port}`);
+    console.log(`Try me in http://localhost:${port}/swagger`);
+  });
 }
 bootstrap();

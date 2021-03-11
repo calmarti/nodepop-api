@@ -5,7 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { AdvertsModule } from './adverts/adverts.module';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -14,9 +14,19 @@ import { ConfigModule } from '@nestjs/config';
     AuthModule,
     UsersModule,
     AdvertsModule,
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', process.env.UPLOADS_FOLDER),
-      serveRoot: `/${process.env.PUBLIC_FOLDER}`,
+    ServeStaticModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => [
+        {
+          rootPath: join(
+            __dirname,
+            '..',
+            configService.get<string>('UPLOADS_FOLDER'),
+          ),
+          serveRoot: `/${configService.get<string>('PUBLIC_FOLDER')}`,
+        },
+      ],
+      inject: [ConfigService],
     }),
   ],
 })
