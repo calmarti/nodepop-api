@@ -3,7 +3,7 @@ services:
   app:
     image: nodepop-api
     build: .
-    container_name: server
+    container_name: app
     ports:
       - ${PORT}:${PORT}
     restart: unless-stopped
