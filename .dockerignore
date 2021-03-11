@@ -1,5 +1,5 @@
-node_modules
-dist
 data
-uploads
+dist
+node_modules
 npm-debug.log
+uploads
