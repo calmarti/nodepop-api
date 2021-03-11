@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  server:
+  app:
     image: nodepop-api
     build: .
     container_name: server
