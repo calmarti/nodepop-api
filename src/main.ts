@@ -17,7 +17,7 @@ async function bootstrap() {
 
   const options = new DocumentBuilder()
     .setTitle('Nodepop API')
-    .setDescription('The Nodepop API description')
+    .setDescription('The Nodepop API Swagger page')
     .setVersion('1.0')
     .addTag('auth')
     .addTag('adverts')
