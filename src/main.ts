@@ -27,7 +27,7 @@ async function bootstrap() {
   SwaggerModule.setup('swagger', app, document);
 
   const configService = app.get(ConfigService);
-  const port = configService.get<number>('PORT') || 3000;
+  const port = configService.get<number>('PORT', 3000);
 
   await app.listen(port, () => {
     console.log(`Nodepop API running in port ${port}`);
