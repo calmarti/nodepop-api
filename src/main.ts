@@ -34,4 +34,7 @@ async function bootstrap() {
     console.log(`Try me in http://localhost:${port}/swagger`);
   });
 }
+
+console.log(process.env);
+
 bootstrap();
