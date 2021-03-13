@@ -35,6 +35,4 @@ async function bootstrap() {
   });
 }
 
-console.log(process.env);
-
 bootstrap();
