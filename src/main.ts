@@ -34,7 +34,5 @@ async function bootstrap() {
     console.log(`Try me in http://localhost:${port}/swagger`);
   });
 }
-console.log('******************** SECRET_KEY ********************');
-console.log(process.env.SECRET_KEY);
 
 bootstrap();
