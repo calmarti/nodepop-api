@@ -31,4 +31,8 @@ USER node
 
 EXPOSE ${PORT}
 
+ARG SECRET_KEY
+
+RUN echo "The key is:", ${SECRET_KEY}
+
 CMD ["npm", "run", "start:prod"]
