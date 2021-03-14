@@ -29,7 +29,4 @@ COPY --from=builder /app/dist ./dist
 
 USER node
 
-ARG SECRET_KEY
-ENV SECRET_KEY=${SECRET_KEY}
-
 CMD ["npm", "run", "start:prod"]

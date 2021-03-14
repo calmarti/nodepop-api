@@ -2,10 +2,7 @@ version: "3.9"
 services:
   app:
     image: nodepop-api
-    build:
-      context: .
-      args:
-        SECRET_KEY: ${SECRET_KEY}
+    build: .
     container_name: app
     ports:
       - ${PORT}:${PORT}

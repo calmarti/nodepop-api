@@ -1,3 +1,0 @@
-#!/bin/bash
-
-docker build -t $IMAGE_NAME --build-arg SECRET_KEY=$SECRET_KEY .
