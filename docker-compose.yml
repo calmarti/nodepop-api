@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   app:
-    image: nodepop-api
+    image: davidjj76/nodepop-api
     build: .
     container_name: app
     ports:
