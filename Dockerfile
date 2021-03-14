@@ -29,10 +29,7 @@ COPY --from=builder /app/dist ./dist
 
 USER node
 
-EXPOSE ${PORT}
-
 ARG SECRET_KEY
-
-RUN echo "The key is:", ${SECRET_KEY}
+ENV SECRET_KEY=${SECRET_KEY}
 
 CMD ["npm", "run", "start:prod"]
