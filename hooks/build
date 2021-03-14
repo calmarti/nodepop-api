@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker build -t davidjj76/nodepop-api --build-arg SECRET_KEY=$SECRET_KEY .
