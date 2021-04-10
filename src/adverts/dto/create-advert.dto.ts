@@ -17,7 +17,7 @@ export class CreateAdvertDto {
   name: string;
 
   @ApiProperty({ type: Boolean })
-  @Transform(({ value }) => value === 'true')
+  @Transform(({ value }) => ['true', true].includes(value))
   @IsBoolean()
   sale: boolean;
 
