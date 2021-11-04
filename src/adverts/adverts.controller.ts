@@ -16,6 +16,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBearerAuth, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/jwt.guard';
 import { ResponseOrNotFoundInterceptor } from '../utils/response-or-not-found.interceptor';
+import { PhotoUrlInterceptor } from '../utils/photo-url.interceptor';
 import { AdvertsService } from './adverts.service';
 import { CreateAdvertDto } from './dto/create-advert.dto';
 import { FilterAdvertDto } from './dto/filter-advert.dto';
@@ -48,6 +49,7 @@ export class AdvertsController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @UseInterceptors(FileInterceptor('photo', { storage }))
+  @UseInterceptors(PhotoUrlInterceptor)
   @ApiConsumes('multipart/form-data')
   @Post()
   create(
@@ -69,6 +71,7 @@ export class AdvertsController {
 
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
+  @UseInterceptors(PhotoUrlInterceptor)
   @Get()
   findAll(@Query() query: FilterAdvertDto) {
     return this.advertsService.findAll(query);
@@ -77,6 +80,7 @@ export class AdvertsController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @UseInterceptors(ResponseOrNotFoundInterceptor)
+  @UseInterceptors(PhotoUrlInterceptor)
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.advertsService.findById(id);
