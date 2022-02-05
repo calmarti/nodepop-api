@@ -1,4 +1,4 @@
-version: "3.9"
+version: '3.9'
 services:
   app:
     image: davidjj76/nodepop-api
@@ -8,5 +8,8 @@ services:
       - ${PORT}:${PORT}
     restart: unless-stopped
     volumes:
-      - ./data:/home/node/app/data
-      - ./${UPLOADS_FOLDER}:/home/node/app/${UPLOADS_FOLDER}
+      - nodepop-api-data:/home/node/app/data
+      - nodepop-api-uploads:/home/node/app/${UPLOADS_FOLDER}
+volumes:
+  nodepop-api-data:
+  nodepop-api-uploads:
