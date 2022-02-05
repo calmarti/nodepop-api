@@ -51,7 +51,6 @@ $ docker-compose start  # (start container)
 $ docker-compose down   # (delete container)
 
 # Run from Docker Hub (no code, no build, just run)
-# Be sure to give write permissions to /data and /uploads folders
 # Windows (Powershell), Linux, Mac
 $ docker run --name nodepop-api -dp 3001:3001 -v nodepop-api-data:/home/node/app/data -v nodepop-api-uploads:/home/node/app/uploads davidjj76/nodepop-api
 ```
