@@ -1,4 +1,4 @@
-FROM node:14.16.0-alpine as builder
+FROM node:14.18.0-alpine as builder
 
 WORKDIR /app
 
@@ -11,7 +11,7 @@ COPY . .
 RUN npm run build
 
 
-FROM node:14.16.0-alpine
+FROM node:14.18.0-alpine
 
 RUN mkdir /home/node/app && chown -R node:node /home/node/app
 
