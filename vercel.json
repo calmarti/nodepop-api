@@ -1,4 +1,7 @@
-{
+{ 
+
+"builds": [ {"src": "dist/main", "use": "@vercel/node"}],
+
     "rewrites": [
         {
             "source": "/(.*)",
