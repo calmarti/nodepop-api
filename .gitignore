@@ -1,4 +1,5 @@
 # compiled output
+
 # /dist removed so vercel can do the build (uncomment otherwise)
 /node_modules
 /uploads/*
@@ -36,7 +37,8 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 # DATA
-/data
+# /data commented out for vercel deployment
+
 .vercel
 
-/nuttingelsematta
+/nuttingelsematta.DS
