@@ -1,5 +1,5 @@
 # compiled output
-/dist
+# /dist removed so vercel can do the build (uncomment otherwise)
 /node_modules
 /uploads/*
 !/uploads/.gitkeep

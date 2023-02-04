@@ -5,6 +5,7 @@
       "use": "@vercel/node"
     }
   ],
+
   "rewrites": [
     {
       "source": "/api/(.*)",
